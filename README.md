@@ -4,7 +4,7 @@
 The game that will blow your mind with the upbeat pace, deadly guns and way too many demons to absolute with a sweet taste of lead. Are you ready to unleash the ravage?
 
 ## Quick overview
-TODO
+The game will be a 3D shooter with view from above. 
 
 ## Goals
 ### Must have:
