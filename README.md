@@ -4,7 +4,7 @@
 The game that will blow your mind with the upbeat pace, deadly guns and way too many demons to absolute with a sweet taste of lead. Are you ready to unleash the ravage?
 
 ## Quick overview
-The game will be a 3D shooter with view from above with a main goal to kill as many demons as you possibly can.
+The game will be a 3D shooter with view from above with a main goal to kill as many demons as you possibly can. The game will be a cyber bullet hell inspired by the Divine Comedy. For more information proceed to the wiki.
 
 ## Goals
 ### Must have:
