@@ -1,12 +1,12 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace TopDownShooter.Enemy
+namespace TopDownShooter.Enemy.Traits.MovementEffects
 {
     [RequireComponent(typeof(SphereCollider))]
-    public class EnemyGroupAvoidanceController : MonoBehaviour
+    public class GroupAvoidance : BaseMovementEffect
     {
-        [SerializeField] private LayerMask _enemyPlayerMask;
+        [SerializeField] private LayerMask _enemyLayerMask;
         private HashSet<Collider> _collidersInRange;
         private SphereCollider _collider;
         [SerializeField] private float _innerRadius = 0.3f;
@@ -20,21 +20,20 @@ namespace TopDownShooter.Enemy
 
         private void Update()
         {
-            if (DebugSettings.DrawEnemyAvoidanceDebugLines)
+            if (DebugSettings.DrawEnemyAvoidanceLines)
             {
                 var vector = GetAvoidanceVector();
                 Debug.DrawRay(transform.position, vector, Color.red);
-                foreach(var collider in _collidersInRange)
+                foreach (var collider in _collidersInRange)
                 {
                     Debug.DrawLine(transform.position, collider.transform.position, Color.white);
                 }
             }
-    }
-
+        }
 
         private void OnTriggerEnter(Collider other)
         {
-            if (!other.isTrigger && other.gameObject.transform != transform.parent && (1 << other.gameObject.layer & _enemyPlayerMask.value) != 0)
+            if (!other.isTrigger && other.gameObject.transform != transform.parent && (1 << other.gameObject.layer & _enemyLayerMask.value) != 0)
             {
                 _collidersInRange.Add(other);
             }
@@ -42,21 +41,25 @@ namespace TopDownShooter.Enemy
 
         private void OnTriggerExit(Collider other)
         {
-            if (!other.isTrigger && other.gameObject.transform != transform.parent && (1 << other.gameObject.layer & _enemyPlayerMask.value) != 0)
+            if (!other.isTrigger && other.gameObject.transform != transform.parent && (1 << other.gameObject.layer & _enemyLayerMask.value) != 0)
             {
                 if (_collidersInRange.Contains(other))
                     _collidersInRange.Remove(other);
             }
         }
 
+        public override Vector3 GetMovementEffect()
+        {
+            return GetAvoidanceVector();
+        }
+
         public Vector3 GetAvoidanceVector()
         {
-
             var sum = Vector3.zero;
             var radius = _collider.radius;
             foreach (var collider in _collidersInRange)
             {
-                var difference = this.transform.position - collider.transform.position;
+                var difference = transform.position - collider.transform.position;
                 var direction = difference.normalized;
                 var distance = difference.magnitude;
                 var force = 0f;
@@ -70,7 +73,7 @@ namespace TopDownShooter.Enemy
                 sum += direction * force;
             }
 
-            return sum;
+            return sum * _strength;
         }
     }
 }

@@ -3,20 +3,17 @@ using UnityEngine;
 namespace TopDownShooter
 {
     [RequireComponent(typeof(Rigidbody))]
-    public class MovingPhysicsEntity : MonoBehaviour
+    public class BaseCharacterController : MonoBehaviour
     {
-        #region set from the inspector
-
-        [SerializeField] protected float _interactionHeight = 0.3f;
-
+        [Header("Animated model")]
         [SerializeReference] protected Transform _model;
 
-        [SerializeField] protected float _speed = 12;
+        [Header("Movement")]
+        [SerializeField] private float _speed = 12;
+
         [SerializeField] protected float _velocitySmoothTime = 0.25f;
         [SerializeField] protected float _velocityRedirectionCoefficient = 0.05f;
         [SerializeField] protected float _maxVelocity = 10f;
-
-        #endregion set from the inspector
 
         protected Rigidbody _rigidbody;
 
@@ -28,7 +25,7 @@ namespace TopDownShooter
         protected float _directionCoefficient;
 
         #region public API
-        
+
         public void SetTargetVelocity(Vector3 velocity)
         {
             _targetVelocity = velocity;
@@ -37,7 +34,7 @@ namespace TopDownShooter
         public void SetFacingDirection(Vector3 direction)
         {
             var rotation = Quaternion.AngleAxis(Mathf.Rad2Deg * Mathf.Atan2(direction.x, direction.z), Vector3.up);
-            
+
             _model.rotation = rotation;
             _facingDirection = _model.forward;
         }
@@ -46,7 +43,7 @@ namespace TopDownShooter
 
         public float Speed { get => _speed; set => _speed = value; }
 
-        #endregion
+        #endregion public API
 
         protected virtual void Awake()
         {
@@ -56,8 +53,8 @@ namespace TopDownShooter
 
         protected virtual void Update()
         {
-            if (DebugSettings.DrawEnemyMovementDebugLines)
-                DrawDebugLines();
+            if (DebugSettings.DrawEnemyMovementLines)
+                DrawMovementLines();
         }
 
         protected virtual void FixedUpdate()
@@ -79,7 +76,7 @@ namespace TopDownShooter
             _rigidbody.AddForce(_currentVelocity * _speed + _velocityFromRedirection, ForceMode.Acceleration);
         }
 
-        protected virtual void DrawDebugLines()
+        protected virtual void DrawMovementLines()
         {
             Debug.DrawRay(transform.position, _targetVelocity, Color.green);
             Debug.DrawRay(transform.position, _currentVelocity, Color.cyan);

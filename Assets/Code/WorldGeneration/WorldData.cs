@@ -1,4 +1,3 @@
-
 namespace TopDownShooter.WorldGeneration
 {
     public class WorldData

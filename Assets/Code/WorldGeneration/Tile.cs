@@ -18,16 +18,13 @@ namespace TopDownShooter.WorldGeneration
 
     public class TileModifier
     {
-
     }
 
     public class EnemySpawnModifier
     {
-
     }
 
     public class PlayerSpawnModifier
     {
-
     }
 }

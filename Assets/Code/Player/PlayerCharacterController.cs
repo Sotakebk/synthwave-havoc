@@ -1,6 +1,6 @@
 namespace TopDownShooter.Player
 {
-    public class MovingPhysicsPlayerEntity : MovingPhysicsEntity
+    public class PlayerCharacterController : BaseCharacterController
     {
         private bool _redirectOnNextFrame = false;
 
@@ -11,8 +11,8 @@ namespace TopDownShooter.Player
 
         protected override void Update()
         {
-            if (DebugSettings.DrawPlayerMovementDebugLines)
-                DrawDebugLines();
+            if (DebugSettings.DrawPlayerMovementLines)
+                DrawMovementLines();
         }
 
         protected override void HandleMovement()

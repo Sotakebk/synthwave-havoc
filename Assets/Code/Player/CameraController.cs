@@ -4,8 +4,6 @@ namespace TopDownShooter.Player
 {
     public class CameraController : MonoBehaviour
     {
-        #region set from the inspector
-
         [SerializeField] private float _firstSmoothTime = 0.125f;
         [SerializeField] private float _secondSmoothTime = 0.125f;
         [SerializeField] private float _targetHeight = 10f;
@@ -13,23 +11,29 @@ namespace TopDownShooter.Player
         [SerializeField] private float _maxHeight = 25f;
         [SerializeField] private float _heightSmoothTime = 0.125f;
 
-        [SerializeReference] private GameObject _player;
-
-        #endregion set from the inspector
-
-        private Vector3 _currentPosition;
-        private Vector3 _currentVelocity;
-        private Vector3 _positionVelocity;
-        private Vector3 _velocityVelocity;
+        private Vector2 _currentPosition;
+        private Vector2 _currentVelocity;
+        private Vector2 _positionVelocity;
+        private Vector2 _velocityVelocity;
         private float _currentHeight;
         private float _heightVelocity;
 
+        private void ResetPosition()
+        {
+            var targetPosition = GameState.Instance.PlayerCharacterController.transform.position.GetXZ();
+            _currentHeight = _targetHeight;
+            _currentPosition = GetTargetPosition(targetPosition, _currentHeight);
+            transform.position = _currentPosition;
+
+            _currentVelocity = default;
+            _positionVelocity = default;
+            _velocityVelocity = default;
+            _heightVelocity = default;
+        }
+
         private void Start()
         {
-            _currentHeight = _targetHeight;
-            var target = _player.transform.position;
-            transform.position = target + new Vector3(0, _currentHeight, 0);
-
+            ResetPosition();
         }
 
         private void LateUpdate()
@@ -37,7 +41,7 @@ namespace TopDownShooter.Player
             HandleZoomInput();
             HandleMovement();
 
-            if (DebugSettings.DrawCameraDebugLines)
+            if (DebugSettings.DrawCameraLines)
                 DrawDebugLines();
         }
 
@@ -50,23 +54,28 @@ namespace TopDownShooter.Player
 
         private void HandleMovement()
         {
-            var target = _player.transform.position;
-            var delta = target - _currentPosition;
-            _currentVelocity = Vector3.SmoothDamp(_currentVelocity, delta, ref _velocityVelocity, _firstSmoothTime, float.MaxValue, Time.deltaTime);
+            var targetPosition = GameState.Instance.PlayerCharacterController.transform.position.GetXZ();
+            var delta = targetPosition - _currentPosition;
+            _currentVelocity = Vector2.SmoothDamp(_currentVelocity, delta, ref _velocityVelocity, _firstSmoothTime, float.MaxValue, Time.deltaTime);
 
-            var realTarget = target + _currentVelocity;
-            _currentPosition = Vector3.SmoothDamp(_currentPosition, realTarget, ref _positionVelocity, _secondSmoothTime, float.MaxValue, Time.deltaTime);
+            var realTarget = targetPosition + _currentVelocity;
+            _currentPosition = Vector2.SmoothDamp(_currentPosition, realTarget, ref _positionVelocity, _secondSmoothTime, float.MaxValue, Time.deltaTime);
 
-            transform.position = _currentPosition + new Vector3(0, _currentHeight, 0);
+            transform.position = GetTargetPosition(_currentPosition, _currentHeight);
+        }
+
+        private Vector3 GetTargetPosition(Vector2 playerPosition, float height)
+        {
+            return new Vector3(playerPosition.x, height, playerPosition.y);
         }
 
         private void DrawDebugLines()
         {
             var root = transform.position;
             root = new Vector3(root.x, 0, root.z);
-            Debug.DrawRay(root, _currentVelocity, Color.red);
-            Debug.DrawRay(root, _positionVelocity, Color.yellow);
-            Debug.DrawRay(root, _velocityVelocity, Color.magenta);
+            Debug.DrawRay(root, _currentVelocity.ToVector3XZ(), Color.red);
+            Debug.DrawRay(root, _positionVelocity.ToVector3XZ(), Color.yellow);
+            Debug.DrawRay(root, _velocityVelocity.ToVector3XZ(), Color.magenta);
         }
     }
 }

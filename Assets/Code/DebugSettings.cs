@@ -4,64 +4,84 @@ namespace TopDownShooter
 {
     public static class DebugSettings
     {
-        public static bool DrawCameraDebugLines { get; set; }
-        public static bool DrawPlayerMovementDebugLines { get; set; }
-        public static bool DrawEnemyMovementDebugLines { get; set; }
-        public static bool DrawEnemyPathingDebugLines { get; set; }
-        public static bool DrawEnemyAvoidanceDebugLines { get; set; }
+        public static bool DrawCameraLines { get; set; }
+        public static bool DrawPlayerMovementLines { get; set; }
+        public static bool DrawEnemyMovementLines { get; set; }
+        public static bool DrawEnemyPathLines { get; set; }
+        public static bool DrawEnemyAvoidanceLines { get; set; }
+        public static bool DrawEnemyVisionLines { get; set; }
+        public static bool DrawAvoidCollisionWithStaticObjectLines { get; set; }
     }
 
 #if UNITY_EDITOR
+
     public class DebugEditorExtensions : Editor
     {
         [MenuItem("Custom/Turn all debug lines off")]
         public static void TurnAllDebugLinesOff()
         {
-            DebugSettings.DrawCameraDebugLines = false;
-            DebugSettings.DrawPlayerMovementDebugLines = false;
-            DebugSettings.DrawEnemyMovementDebugLines = false;
-            DebugSettings.DrawEnemyPathingDebugLines = false;
-            DebugSettings.DrawEnemyAvoidanceDebugLines = false;
+            DebugSettings.DrawCameraLines = false;
+            DebugSettings.DrawPlayerMovementLines = false;
+            DebugSettings.DrawEnemyMovementLines = false;
+            DebugSettings.DrawEnemyPathLines = false;
+            DebugSettings.DrawEnemyAvoidanceLines = false;
+            DebugSettings.DrawEnemyVisionLines = false;
+            DebugSettings.DrawAvoidCollisionWithStaticObjectLines = false;
         }
 
         [MenuItem("Custom/Turn all debug lines on")]
         public static void TurnAllDebugLinesOn()
         {
-            DebugSettings.DrawCameraDebugLines = true;
-            DebugSettings.DrawPlayerMovementDebugLines = true;
-            DebugSettings.DrawEnemyMovementDebugLines = true;
-            DebugSettings.DrawEnemyPathingDebugLines = true;
-            DebugSettings.DrawEnemyAvoidanceDebugLines = true;
+            DebugSettings.DrawCameraLines = true;
+            DebugSettings.DrawPlayerMovementLines = true;
+            DebugSettings.DrawEnemyMovementLines = true;
+            DebugSettings.DrawEnemyPathLines = true;
+            DebugSettings.DrawEnemyAvoidanceLines = true;
+            DebugSettings.DrawEnemyVisionLines = true;
+            DebugSettings.DrawAvoidCollisionWithStaticObjectLines = true;
         }
 
-        [MenuItem("Custom/Toggle camera debug lines")]
+        [MenuItem("Custom/Toggle camera lines")]
         public static void ToggleCameraDebugLines()
         {
-            DebugSettings.DrawCameraDebugLines = !DebugSettings.DrawCameraDebugLines;
+            DebugSettings.DrawCameraLines = !DebugSettings.DrawCameraLines;
         }
 
-        [MenuItem("Custom/Toggle player movement debug lines")]
+        [MenuItem("Custom/Toggle player movement lines")]
         public static void DrawPlayerMovementDebugLines()
         {
-            DebugSettings.DrawPlayerMovementDebugLines = !DebugSettings.DrawPlayerMovementDebugLines;
+            DebugSettings.DrawPlayerMovementLines = !DebugSettings.DrawPlayerMovementLines;
         }
 
-        [MenuItem("Custom/Toggle enemy movement debug lines")]
+        [MenuItem("Custom/Toggle enemy movement lines")]
         public static void DrawEnemyMovementDebugLines()
         {
-            DebugSettings.DrawEnemyMovementDebugLines = !DebugSettings.DrawEnemyMovementDebugLines;
+            DebugSettings.DrawEnemyMovementLines = !DebugSettings.DrawEnemyMovementLines;
         }
 
-        [MenuItem("Custom/Toggle enemy pathing debug lines")]
+        [MenuItem("Custom/Toggle enemy pathing lines")]
         public static void ToggleEnemyPathingDebugLines()
         {
-            DebugSettings.DrawEnemyPathingDebugLines = !DebugSettings.DrawEnemyPathingDebugLines;
+            DebugSettings.DrawEnemyPathLines = !DebugSettings.DrawEnemyPathLines;
         }
-        [MenuItem("Custom/Toggle enemy avoidance debug lines")]
+
+        [MenuItem("Custom/Toggle enemy avoidance lines")]
         public static void ToggleEnemyAvoidanceDebugLines()
         {
-            DebugSettings.DrawEnemyAvoidanceDebugLines = !DebugSettings.DrawEnemyAvoidanceDebugLines;
+            DebugSettings.DrawEnemyAvoidanceLines = !DebugSettings.DrawEnemyAvoidanceLines;
+        }
+
+        [MenuItem("Custom/Toggle enemy vision lines")]
+        public static void ToggleEnemyVisionLines()
+        {
+            DebugSettings.DrawEnemyVisionLines = !DebugSettings.DrawEnemyVisionLines;
+        }
+        [MenuItem("Custom/Toggle avoid collision lines")]
+        public static void ToggleAvoidCollisionLines()
+        {
+            DebugSettings.DrawAvoidCollisionWithStaticObjectLines = !DebugSettings.DrawAvoidCollisionWithStaticObjectLines;
         }
     }
+
 #endif
 }

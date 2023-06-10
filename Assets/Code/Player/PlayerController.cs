@@ -2,22 +2,17 @@ using UnityEngine;
 
 namespace TopDownShooter.Player
 {
-    [RequireComponent(typeof(MovingPhysicsPlayerEntity))]
+    [RequireComponent(typeof(PlayerCharacterController))]
     public class PlayerController : MonoBehaviour
     {
-        #region set from the inspector
-
         [SerializeReference] private Camera _camera;
-        [SerializeReference] private Transform _model;
 
-        #endregion set from the inspector
-
-        private MovingPhysicsPlayerEntity _physicsPlayerEntity;
+        private PlayerCharacterController _physicsPlayerEntity;
         private Vector3 _mouseHitPosition;
 
         private void Awake()
         {
-            _physicsPlayerEntity = GetComponent<MovingPhysicsPlayerEntity>();
+            _physicsPlayerEntity = GetComponent<PlayerCharacterController>();
         }
 
         private void Update()
@@ -25,7 +20,7 @@ namespace TopDownShooter.Player
             HandleMovementInput();
             HandleAim();
 
-            if (DebugSettings.DrawPlayerMovementDebugLines)
+            if (DebugSettings.DrawPlayerMovementLines)
                 DrawDebugLines();
         }
 
@@ -49,7 +44,7 @@ namespace TopDownShooter.Player
         {
             var inputDirection = new Vector3(Input.GetAxisRaw("Horizontal"), 0, Input.GetAxisRaw("Vertical")).normalized;
             _physicsPlayerEntity.SetTargetVelocity(inputDirection);
-            
+
             if (Input.GetKeyDown(KeyCode.E))
                 _physicsPlayerEntity.RedirectOnNextFrame();
         }

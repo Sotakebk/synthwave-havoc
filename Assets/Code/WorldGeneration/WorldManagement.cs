@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using Unity.AI.Navigation;
 using UnityEngine;
 using UnityEngine.AI;
@@ -26,7 +24,7 @@ namespace TopDownShooter.WorldGeneration
             GetComponent<NavMeshSurface>().BuildNavMesh();
         }
 
-        void GenerateChunks(WorldData map)
+        private void GenerateChunks(WorldData map)
         {
             var countX = 1 + map.Tiles.GetLength(0) / ChunkSize;
             var countY = 1 + map.Tiles.GetLength(1) / ChunkSize;

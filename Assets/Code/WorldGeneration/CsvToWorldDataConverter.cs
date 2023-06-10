@@ -58,9 +58,9 @@ namespace TopDownShooter.WorldGeneration
             var width = lines.Max(l => l.Split(TileSeparator, StringSplitOptions.None).Length);
 
             var textTiles = new string[height, width];
-            for(int i = 0; i < height; i++)
+            for (int i = 0; i < height; i++)
             {
-                for(int j = 0; j < width; j++)
+                for (int j = 0; j < width; j++)
                 {
                     textTiles[i, j] = string.Empty;
                 }
