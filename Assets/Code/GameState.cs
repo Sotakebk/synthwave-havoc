@@ -1,20 +1,14 @@
 using System;
-using TopDownShooter.Player;
+using TopDownShooter.Interactive.Player;
 using UnityEngine;
 
-public class GameState : MonoBehaviour
+namespace TopDownShooter
 {
-    [SerializeReference] private PlayerCharacterController _playerCharacterController;
-
-    public static GameState Instance { get; private set; }
-
-    public PlayerCharacterController PlayerCharacterController => _playerCharacterController;
-
-    private void Start()
+    [Serializable]
+    public class GameState
     {
-        if (Instance != null)
-            throw new InvalidOperationException();
+        [SerializeReference] private PlayerCharacterController _playerCharacterController;
 
-        Instance = this;
+        public PlayerCharacterController PlayerCharacterController => _playerCharacterController;
     }
 }

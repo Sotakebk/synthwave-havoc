@@ -76,6 +76,7 @@ namespace TopDownShooter
         {
             DebugSettings.DrawEnemyVisionLines = !DebugSettings.DrawEnemyVisionLines;
         }
+
         [MenuItem("Custom/Toggle avoid collision lines")]
         public static void ToggleAvoidCollisionLines()
         {
