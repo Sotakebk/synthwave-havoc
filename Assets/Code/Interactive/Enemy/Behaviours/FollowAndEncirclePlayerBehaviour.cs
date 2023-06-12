@@ -6,10 +6,10 @@ namespace TopDownShooter.Interactive.Enemy.Behaviours
     public class FollowAndEncirclePlayerBehaviour : FollowPlayerBehaviour
     {
         [SerializeField] protected float _targetEncirclingDistance = 4f;
-        [SerializeField] protected float _minDistanceFromTarget = 1f;
-        [SerializeField] protected float _minDistanceFromTargetVelocity = 1f;
-        [SerializeField] protected float _maxDistanceFromTarget = 2f;
-        [SerializeField] protected float _maxDistanceFromTargetVelocity = 2f;
+        [SerializeField] protected float _minEncirclingDistance = 0.5f;
+        [SerializeField] protected float _minEncirclingDistanceVelocity = 0f;
+        [SerializeField] protected float _maxEncirclingDistance = 1f;
+        [SerializeField] protected float _maxEncirclingDistanceVelocity = 1f;
         [SerializeField] protected float _avoidanceVelocity = 7f;
         [SerializeField] protected float _straightening = 0.25f;
 
@@ -45,7 +45,7 @@ namespace TopDownShooter.Interactive.Enemy.Behaviours
 
             var straighteningVelocity = PathHelper.GetConstraintVelocityToFollowPath(position, target, velocity) * _straightening;
 
-            var mappedDistance = MathHelper.ClampAndLinearMap(distance, _minDistanceFromTarget, _minMovementDistanceVelocity, _maxDistanceFromTarget, _maxDistanceFromTargetVelocity);
+            var mappedDistance = MathHelper.ClampAndLinearMap(distance, _minEncirclingDistance, _minEncirclingDistanceVelocity, _maxEncirclingDistance, _maxEncirclingDistanceVelocity);
             var forwardVelocity = direction * mappedDistance;
 
             var (effects, _) = _enemyAI.SumMovementWeights();
