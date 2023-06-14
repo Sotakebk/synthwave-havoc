@@ -1,4 +1,6 @@
 using System;
+using System.Linq;
+using TopDownShooter.Interactive.Enemy;
 using TopDownShooter.Interactive.Player;
 using UnityEngine;
 
@@ -10,6 +12,8 @@ namespace TopDownShooter
         public static GameState Current { get; private set; }
         public PlayerCharacterController PlayerCharacterController { get; private set; }
         public CameraController PlayerCamera { get; private set; }
+
+        [SerializeReference] GameManager _gameManager;
 
         private void Awake()
         {
@@ -31,5 +35,13 @@ namespace TopDownShooter
             PlayerCamera = FindObjectOfType<CameraController>();
         }
 
+        public void NotifyEnemyDied()
+        {
+            var enemies = FindObjectsOfType<EnemyAI>();
+            if(enemies.Length == 0)
+            {
+                _gameManager.OpenNextLevel();
+            }
+        }
     }
 }

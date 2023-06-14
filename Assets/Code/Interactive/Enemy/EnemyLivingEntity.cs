@@ -6,6 +6,7 @@ namespace TopDownShooter.Interactive.Enemy
         {
             gameObject.SetActive(false);
             Destroy(gameObject);
+            GameState.Current.NotifyEnemyDied();
         }
     }
 }

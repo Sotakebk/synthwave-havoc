@@ -26,9 +26,9 @@ namespace TopDownShooter
             OpenNextLevel();
         }
 
-        private void OpenNextLevel()
+        public void OpenNextLevel()
         {
-            _currentLevel++;
+            _currentLevel = ((_currentLevel + 1) % _levels.Length);
             GameState.Current.Unbind();
             _worldBuilder.ReloadLevel(_levels[_currentLevel]);
             GameState.Current.Bind();

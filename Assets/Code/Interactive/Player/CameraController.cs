@@ -35,15 +35,16 @@ namespace TopDownShooter.Interactive.Player
         private void ResetPosition()
         {
             var targetPosition = GameState.Current.PlayerCharacterController.transform.position.GetXZ();
+            var realTarget = targetPosition + _currentVelocity;
+            _currentPosition = realTarget;
             _currentHeight = _targetHeight;
-            _currentPosition = GetTargetPosition(targetPosition, _currentHeight);
-            transform.position = _currentPosition;
 
             _currentVelocity = default;
             _positionVelocity = default;
             _velocityVelocity = default;
             _heightVelocity = default;
             transform.rotation = Quaternion.Euler(90, 0, 0);
+            UpdateCameraPosition();
         }
 
         private void Start()

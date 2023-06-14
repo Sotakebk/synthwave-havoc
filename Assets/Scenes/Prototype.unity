@@ -315,7 +315,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: da137426b8cb109489fd7e1ff88e7e63, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _gameState: {fileID: 0}
   _currentLevel: 0
 --- !u!114 &1454650618
 MonoBehaviour:
@@ -343,3 +342,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 04207bd1e4beb1241bf6030a2212591f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _gameManager: {fileID: 1454650617}

@@ -6,7 +6,7 @@ namespace TopDownShooter
     {
         public void DestroyOnLevelChange()
         {
-
+            Destroy(gameObject);
         }
     }
 }
