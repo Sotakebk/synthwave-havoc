@@ -22,6 +22,11 @@ namespace TopDownShooter.World.Construction
 
         private const int ChunkSize = 16;
 
+        private Vector3 InMiddleOfTile(Tile tile)
+        {
+            return new Vector3(0.5f + tile.X, 0, 0.5f + tile.Y);
+        }
+
         public void ReloadLevel(WorldData data)
         {
             CleanUp();
@@ -73,7 +78,7 @@ namespace TopDownShooter.World.Construction
                     {
                         var prefabToInstantiate = EnemyTypeToPrefab(esm.EnemyType);
                         for (int i = 0; i < esm.Count; i++)
-                            Instantiate(prefabToInstantiate, new Vector3(tile.X, 0, tile.Y), Quaternion.identity);
+                            Instantiate(prefabToInstantiate, InMiddleOfTile(tile), Quaternion.identity);
                     }
                 }
             }
@@ -109,8 +114,8 @@ namespace TopDownShooter.World.Construction
             var index = UnityEngine.Random.Range(0, spawns.Count);
 
             var spawn = spawns[index];
-            Instantiate(_playerCharacterPrefab, new Vector3(spawn.X, 0, spawn.Y), Quaternion.identity);
-            Instantiate(_playerCameraPrefab, new Vector3(spawn.X, 0, spawn.Y), Quaternion.identity);
+            Instantiate(_playerCharacterPrefab, InMiddleOfTile(spawn), Quaternion.identity);
+            Instantiate(_playerCameraPrefab, InMiddleOfTile(spawn), Quaternion.identity);
         }
 
         private void GenerateChunks(WorldData map)
