@@ -1,6 +1,7 @@
 using TopDownShooter.Interactive.Enemy.Behaviours;
 using TopDownShooter.Interactive.Enemy.Traits.MovementEffects;
 using TopDownShooter.Interactive.Enemy.Traits.PathFollowing;
+using TopDownShooter.Interactive.Enemy.Traits.Shooting;
 using TopDownShooter.Interactive.Enemy.Traits.Vision;
 using UnityEngine;
 
@@ -16,11 +17,14 @@ namespace TopDownShooter.Interactive.Enemy
 
         [SerializeReference] protected BasePathing _pathing;
 
+        [SerializeReference] protected BaseShooting _shooting;
+
         [SerializeField] protected MovementEffectWeightPair[] _movementEffectsWithWeights;
 
         public BaseVision Vision => _vision;
         public BasePathing Pathing => _pathing;
         public BaseCharacterController CharacterController => _characterController;
+        public BaseShooting Shooting => _shooting;
 
         private BaseCharacterController _characterController;
         private Vector3 _faceDirection;
@@ -35,14 +39,14 @@ namespace TopDownShooter.Interactive.Enemy
             _characterController = GetComponent<BaseCharacterController>();
             _noneBehaviour = GetComponent<NoneBehaviour>();
             _behaviours = GetComponents<BaseBehaviour>();
-            foreach(var behaviour in _behaviours)
-            {
-                behaviour.Initialize(this);
-            }
         }
 
         protected virtual void Start()
         {
+            foreach (var behaviour in _behaviours)
+            {
+                behaviour.Initialize(this);
+            }
             EnterBehaviour(_noneBehaviour);
         }
 

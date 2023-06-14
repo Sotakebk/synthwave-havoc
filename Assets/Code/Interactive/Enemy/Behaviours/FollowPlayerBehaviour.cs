@@ -54,11 +54,13 @@ namespace TopDownShooter.Interactive.Enemy.Behaviours
         {
             _updatesSincePathRecalculated = -1;
             _enemyAI.CharacterController.Speed = _speed;
+            _enemyAI.Shooting?.SetShootingEnable(true);
         }
 
         public override void OnExit()
         {
             _updatesSincePathRecalculated = 0;
+            _enemyAI.Shooting?.SetShootingEnable(false);
         }
 
         public override void ActiveBehaviourUpdate()

@@ -16,6 +16,7 @@ namespace TopDownShooter.Interactive.Enemy.Behaviours
 
         public override void OnEnter()
         {
+            _enemyAI.Shooting?.SetShootingEnable(false);
         }
 
         public override void OnExit()

@@ -11,6 +11,9 @@ namespace TopDownShooter.Interactive.Player
         [SerializeField] private float _minHeight = 5f;
         [SerializeField] private float _maxHeight = 25f;
         [SerializeField] private float _heightSmoothTime = 0.125f;
+        [SerializeField] private float _shakeTargetPositionRecoveryTime = 0.5f;
+        [SerializeField] private float _shakePositionFollowTime = 0.1f;
+        [SerializeField] private float _shakeImpact = 0.1f;
 
         private Vector2 _currentPosition;
         private Vector2 _currentVelocity;
@@ -18,6 +21,16 @@ namespace TopDownShooter.Interactive.Player
         private Vector2 _velocityVelocity;
         private float _currentHeight;
         private float _heightVelocity;
+
+        private Vector2 _targetShakeOffset;
+        private Vector2 _shakeOffsetRecoveryVelocity;
+        private Vector2 _currentShakeOffset;
+        private Vector2 _currentShakeOffsetVelocity;
+
+        public void AddShake(Vector2 impulse)
+        {
+            _targetShakeOffset += impulse;
+        }
 
         private void ResetPosition()
         {
@@ -41,9 +54,17 @@ namespace TopDownShooter.Interactive.Player
         {
             HandleZoomInput();
             HandleMovement();
+            HandleShake();
+            UpdateCameraPosition();
 
             if (DebugSettings.DrawCameraLines)
                 DrawDebugLines();
+        }
+
+        private void HandleShake()
+        {
+            _targetShakeOffset = Vector2.SmoothDamp(_targetShakeOffset, Vector2.zero, ref _shakeOffsetRecoveryVelocity, _shakeTargetPositionRecoveryTime, float.MaxValue, Time.deltaTime);
+            _currentShakeOffset = Vector2.SmoothDamp(_currentShakeOffset, _targetShakeOffset, ref _currentShakeOffsetVelocity, _shakePositionFollowTime, float.MaxValue, Time.deltaTime);
         }
 
         private void HandleZoomInput()
@@ -61,13 +82,16 @@ namespace TopDownShooter.Interactive.Player
 
             var realTarget = targetPosition + _currentVelocity;
             _currentPosition = Vector2.SmoothDamp(_currentPosition, realTarget, ref _positionVelocity, _secondSmoothTime, float.MaxValue, Time.deltaTime);
-
-            transform.position = GetTargetPosition(_currentPosition, _currentHeight);
         }
 
-        private Vector3 GetTargetPosition(Vector2 playerPosition, float height)
+        private void UpdateCameraPosition()
         {
-            return new Vector3(playerPosition.x, height, playerPosition.y);
+            transform.position = GetTargetPosition(_currentPosition + _currentShakeOffset * _shakeImpact, _currentHeight);
+        }
+
+        private Vector3 GetTargetPosition(Vector2 targetPosition, float height)
+        {
+            return new Vector3(targetPosition.x, height, targetPosition.y);
         }
 
         private void DrawDebugLines()

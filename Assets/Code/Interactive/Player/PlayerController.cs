@@ -6,6 +6,7 @@ namespace TopDownShooter.Interactive.Player
     public class PlayerController : MonoBehaviour
     {
         [SerializeReference] private Camera _camera;
+        [SerializeReference] private BaseWeapon _weapon;
 
         private PlayerCharacterController _physicsPlayerEntity;
         private Vector3 _mouseHitPosition;
@@ -19,6 +20,7 @@ namespace TopDownShooter.Interactive.Player
         {
             HandleMovementInput();
             HandleAim();
+            HandleShooting();
 
             if (DebugSettings.DrawPlayerMovementLines)
                 DrawDebugLines();
@@ -47,6 +49,13 @@ namespace TopDownShooter.Interactive.Player
 
             if (Input.GetKeyDown(KeyCode.E))
                 _physicsPlayerEntity.RedirectOnNextFrame();
+        }
+
+        private void HandleShooting() {
+            if (Input.GetKey(KeyCode.Mouse0))
+            {
+                 _ = _weapon.TryShoot();
+            }
         }
 
         private void DrawDebugLines()
