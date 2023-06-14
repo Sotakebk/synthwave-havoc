@@ -1,16 +1,37 @@
+using TopDownShooter.World.Construction;
+using TopDownShooter.World.Data;
 using UnityEngine;
 
 namespace TopDownShooter
 {
+    [RequireComponent(typeof(LevelContainer))]
+    [RequireComponent(typeof(WorldBuilder))]
+    [RequireComponent(typeof(GameState))]
     public class GameManager : MonoBehaviour
     {
-        [SerializeField] private GameState _gameState;
+        [SerializeField] private int _currentLevel;
+        [SerializeField] private WorldData[] _levels;
 
-        public static GameState CurrentState { get; private set; }
+        private WorldBuilder _worldBuilder;
 
         private void Awake()
         {
-            CurrentState = _gameState;
+            _worldBuilder = GetComponent<WorldBuilder>();
+        }
+
+        private void Start()
+        {
+            _currentLevel = -1;
+            _levels = GetComponent<LevelContainer>().GetLevels();
+            OpenNextLevel();
+        }
+
+        private void OpenNextLevel()
+        {
+            _currentLevel++;
+            GameState.Current.Unbind();
+            _worldBuilder.ReloadLevel(_levels[_currentLevel]);
+            GameState.Current.Bind();
         }
     }
 }

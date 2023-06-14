@@ -1,7 +1,8 @@
 using System.Collections.Generic;
+using TopDownShooter.World.Data;
 using UnityEngine;
 
-namespace TopDownShooter.WorldGeneration
+namespace TopDownShooter.World.Construction
 {
     public class Mesher
     {

@@ -5,15 +5,16 @@ namespace TopDownShooter.Interactive.Player
     [RequireComponent(typeof(PlayerCharacterController))]
     public class PlayerController : MonoBehaviour
     {
-        [SerializeReference] private Camera _camera;
+        private Camera _camera;
         [SerializeReference] private BaseWeapon _weapon;
 
         private PlayerCharacterController _physicsPlayerEntity;
         private Vector3 _mouseHitPosition;
 
-        private void Awake()
+        private void Start()
         {
             _physicsPlayerEntity = GetComponent<PlayerCharacterController>();
+            _camera = GameState.Current.PlayerCamera.GetComponent<Camera>();
         }
 
         private void Update()

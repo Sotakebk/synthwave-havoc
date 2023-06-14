@@ -5,8 +5,13 @@ namespace TopDownShooter.Interactive.Player
     public class PlayerWeapon : BaseWeapon
     {
         [Header("Player-specific fields")]
-        [SerializeReference] protected CameraController _camera;
+        protected CameraController _camera;
         [SerializeField] protected float _cameraShakeForce = 0.5f;
+
+        private void Start()
+        {
+            _camera = GameState.Current.PlayerCamera;
+        }
 
         public override bool TryShoot()
         {

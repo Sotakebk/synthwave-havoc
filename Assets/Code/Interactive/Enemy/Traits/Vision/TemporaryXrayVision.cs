@@ -22,7 +22,7 @@ namespace TopDownShooter.Interactive.Enemy.Traits.Vision
                 _xrayVisionActiveSeconds += Time.fixedDeltaTime;
                 if (_xrayVisionActiveSeconds < _xrayVisionSeconds)
                 {
-                    var player = GameManager.CurrentState.PlayerCharacterController;
+                    var player = GameState.Current.PlayerCharacterController;
                     LastSeenPlayerPosition = player.transform.position;
                     LastSeenPlayerVelocity = player.GetLastVelocity();
                     return true;

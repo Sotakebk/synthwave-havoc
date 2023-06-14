@@ -57,6 +57,7 @@ namespace TopDownShooter.Interactive.Enemy.Traits.MovementEffects
         {
             var sum = Vector3.zero;
             var radius = _collider.radius;
+            _collidersInRange.RemoveWhere(c => c == null);
             foreach (var collider in _collidersInRange)
             {
                 var difference = transform.position - collider.transform.position;

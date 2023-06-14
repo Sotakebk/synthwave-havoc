@@ -1,4 +1,4 @@
-namespace TopDownShooter.WorldGeneration
+namespace TopDownShooter.World.Data
 {
     public class WorldData
     {

@@ -34,7 +34,7 @@ namespace TopDownShooter.Interactive.Player
 
         private void ResetPosition()
         {
-            var targetPosition = GameManager.CurrentState.PlayerCharacterController.transform.position.GetXZ();
+            var targetPosition = GameState.Current.PlayerCharacterController.transform.position.GetXZ();
             _currentHeight = _targetHeight;
             _currentPosition = GetTargetPosition(targetPosition, _currentHeight);
             transform.position = _currentPosition;
@@ -43,6 +43,7 @@ namespace TopDownShooter.Interactive.Player
             _positionVelocity = default;
             _velocityVelocity = default;
             _heightVelocity = default;
+            transform.rotation = Quaternion.Euler(90, 0, 0);
         }
 
         private void Start()
@@ -76,7 +77,7 @@ namespace TopDownShooter.Interactive.Player
 
         private void HandleMovement()
         {
-            var targetPosition = GameManager.CurrentState.PlayerCharacterController.transform.position.GetXZ();
+            var targetPosition = GameState.Current.PlayerCharacterController.transform.position.GetXZ();
             var delta = targetPosition - _currentPosition;
             _currentVelocity = Vector2.SmoothDamp(_currentVelocity, delta, ref _velocityVelocity, _firstSmoothTime, float.MaxValue, Time.deltaTime);
 

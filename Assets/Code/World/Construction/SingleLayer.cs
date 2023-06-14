@@ -1,7 +1,7 @@
 using UnityEditor;
 using UnityEngine;
 
-namespace TopDownShooter.WorldGeneration
+namespace TopDownShooter.World.Construction
 {
     [System.Serializable]
     public struct SingleLayer

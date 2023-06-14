@@ -45,7 +45,7 @@ namespace TopDownShooter.Interactive.Enemy.Traits.Vision
 
         protected virtual bool CheckIfPlayerIsVisible()
         {
-            var player = GameManager.CurrentState.PlayerCharacterController;
+            var player = GameState.Current.PlayerCharacterController;
             var raySource = new Vector3(transform.position.x, Constants.InteractionHeight, transform.position.z);
             var ray = new Ray(raySource, (player.transform.position - transform.position).normalized);
             var hit = Physics.Raycast(ray, out var hitInfo, _maxVisionRange, _ObstacleAndPlayerMask.value, QueryTriggerInteraction.Ignore);

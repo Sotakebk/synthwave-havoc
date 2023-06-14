@@ -5,10 +5,31 @@ using UnityEngine;
 namespace TopDownShooter
 {
     [Serializable]
-    public class GameState
+    public class GameState : MonoBehaviour
     {
-        [SerializeReference] private PlayerCharacterController _playerCharacterController;
+        public static GameState Current { get; private set; }
+        public PlayerCharacterController PlayerCharacterController { get; private set; }
+        public CameraController PlayerCamera { get; private set; }
 
-        public PlayerCharacterController PlayerCharacterController => _playerCharacterController;
+        private void Awake()
+        {
+            if (Current != null)
+                throw new InvalidOperationException();
+
+            Current = this;
+        }
+
+        public void Unbind()
+        {
+            PlayerCharacterController = null;
+            PlayerCamera = null;
+        }
+
+        public void Bind()
+        {
+            PlayerCharacterController = FindObjectOfType<PlayerCharacterController>();
+            PlayerCamera = FindObjectOfType<CameraController>();
+        }
+
     }
 }
