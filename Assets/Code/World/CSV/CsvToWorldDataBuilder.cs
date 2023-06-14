@@ -39,7 +39,10 @@ namespace TopDownShooter.World.CSV
 
         private static string[,] SplitCsvToTileDescriptions(string csv)
         {
-            var lines = csv.Split(new string[] { "\r\n", "\n" }, StringSplitOptions.None);
+            var lines = csv.Split(new string[] { "\r\n", "\n" }, StringSplitOptions.None)
+                .Where(s=>!string.IsNullOrWhiteSpace(s))
+                .Reverse()
+                .ToArray();
 
             int emptyLines = 0;
             foreach (var line in lines.Reverse())
