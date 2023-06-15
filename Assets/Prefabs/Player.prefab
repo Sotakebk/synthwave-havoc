@@ -70,7 +70,7 @@ Transform:
   m_Children:
   - {fileID: 6660401911455600736}
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!136 &4567036900158715380
 CapsuleCollider:
@@ -138,7 +138,7 @@ MonoBehaviour:
   _speed: 30
   _velocitySmoothTime: 0.1
   _velocityRedirectionCoefficient: 0.3
-  _maxVelocity: 10
+  _maxVelocity: 12
   _dashVelocity: 20
 --- !u!114 &6543799343385293471
 MonoBehaviour:
@@ -171,8 +171,8 @@ MonoBehaviour:
   _secondsPerBullet: 0.1
   _overrideBulletProperties: 1
   _damage: 1.5
-  _startVelocity: 10
-  _minStartVelocity: 8
+  _startVelocity: 14
+  _minStartVelocity: 10
   _knockbackForce: 0.5
   _enemyKnockbackForce: 1
   _outputSource: {fileID: 5081072557806498971}
@@ -306,6 +306,10 @@ PrefabInstance:
       propertyPath: m_ConstrainProportionsScale
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -7511558181221131132, guid: cdf67c96ab9962545b17a07df1f8e1ed, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 49298aa3c6fda9e40a2938d925efe1aa, type: 2}
     - target: {fileID: 919132149155446097, guid: cdf67c96ab9962545b17a07df1f8e1ed, type: 3}
       propertyPath: m_Name
       value: model

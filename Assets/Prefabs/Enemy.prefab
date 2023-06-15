@@ -146,7 +146,7 @@ Transform:
   - {fileID: 3901647217308776677}
   - {fileID: 8432456042632822960}
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!136 &2038451629810824817
 CapsuleCollider:
@@ -211,10 +211,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _model: {fileID: 8432456042632822960}
-  _speed: 12
+  _speed: 15
   _velocitySmoothTime: 0.05
   _velocityRedirectionCoefficient: 0.5
-  _maxVelocity: 10
+  _maxVelocity: 12
 --- !u!114 &4720156368152363869
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -430,6 +430,10 @@ PrefabInstance:
       propertyPath: m_ConstrainProportionsScale
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: -7511558181221131132, guid: 6eb63fb38f664ff46a7010f0057af509, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: c1eacdc45d3dffc4aa888b40998d6e8e, type: 2}
     - target: {fileID: 919132149155446097, guid: 6eb63fb38f664ff46a7010f0057af509, type: 3}
       propertyPath: m_Name
       value: model

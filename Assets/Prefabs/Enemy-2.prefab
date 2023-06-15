@@ -149,7 +149,7 @@ Transform:
   - {fileID: 2484929767770439257}
   - {fileID: 1533961675294072527}
   m_Father: {fileID: 0}
-  m_RootOrder: 6
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!136 &6138732661845022480
 CapsuleCollider:
@@ -214,10 +214,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _model: {fileID: 1533961675294072527}
-  _speed: 12
+  _speed: 15
   _velocitySmoothTime: 0.05
   _velocityRedirectionCoefficient: 0.5
-  _maxVelocity: 10
+  _maxVelocity: 12
 --- !u!114 &7069801254571773690
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -361,11 +361,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5491c0fd8a3fd434c96d702ab67b09cc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _secondsPerBullet: 2
+  _secondsPerBullet: 1.4
   _overrideBulletProperties: 1
-  _damage: 3
-  _startVelocity: 6
-  _minStartVelocity: 4
+  _damage: 2.5
+  _startVelocity: 8
+  _minStartVelocity: 5
   _knockbackForce: 4
   _enemyKnockbackForce: 2
   _outputSource: {fileID: 643814559961610045}
@@ -517,7 +517,7 @@ PrefabInstance:
     - target: {fileID: -7511558181221131132, guid: 57f3ef148f445c34ba5d03decc589f68, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: e7e9a6ad9c7cf604d8c01019da7f70a1, type: 2}
+      objectReference: {fileID: 2100000, guid: d6a30294c3cdac445b81edb814581ffb, type: 2}
     - target: {fileID: 919132149155446097, guid: 57f3ef148f445c34ba5d03decc589f68, type: 3}
       propertyPath: m_Name
       value: enemy2
