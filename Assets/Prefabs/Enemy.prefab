@@ -333,6 +333,7 @@ MonoBehaviour:
   _maxStamina: 10
   _healthRegeneratedPerSecond: 0.1
   _staminaRegeneratedPerSecond: 0.5
+  _hurtSound: {fileID: 8300000, guid: ec4e2cc803c76ba43aeab5b2b125a1b3, type: 3}
 --- !u!114 &8207910875087014078
 MonoBehaviour:
   m_ObjectHideFlags: 0

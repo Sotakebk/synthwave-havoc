@@ -371,6 +371,7 @@ MonoBehaviour:
   _outputSource: {fileID: 643814559961610045}
   _sourceRigidbody: {fileID: 2518504402612059397}
   _bulletPrefab: {fileID: 1457806398585420181, guid: 63d597a75f0bb8549b27f72080a8babb, type: 3}
+  _shotSound: {fileID: 8300000, guid: ec4e2cc803c76ba43aeab5b2b125a1b3, type: 3}
 --- !u!114 &3645683153037414211
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -403,6 +404,7 @@ MonoBehaviour:
   _maxStamina: 10
   _healthRegeneratedPerSecond: 0.1
   _staminaRegeneratedPerSecond: 0.5
+  _hurtSound: {fileID: 8300000, guid: 3a42d90c26ac172489d46a22a8cb761a, type: 3}
 --- !u!114 &-8449243490257140753
 MonoBehaviour:
   m_ObjectHideFlags: 0

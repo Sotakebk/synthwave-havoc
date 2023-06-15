@@ -178,6 +178,7 @@ MonoBehaviour:
   _outputSource: {fileID: 5081072557806498971}
   _sourceRigidbody: {fileID: 6850327509088987491}
   _bulletPrefab: {fileID: 6789187643465070236, guid: 63e17975fbe1c4f4d8533e1f9b7b86ad, type: 3}
+  _shotSound: {fileID: 8300000, guid: 9bdd5855b81b7f14daa0496a3ec71bc5, type: 3}
   _cameraShakeForce: 0.5
 --- !u!114 &7347181526165456236
 MonoBehaviour:
@@ -195,6 +196,7 @@ MonoBehaviour:
   _maxStamina: 10
   _healthRegeneratedPerSecond: 0.2
   _staminaRegeneratedPerSecond: 0.6
+  _hurtSound: {fileID: 8300000, guid: 418df3def1667e24fa5d0987d235021d, type: 3}
 --- !u!114 &3809513410246750202
 MonoBehaviour:
   m_ObjectHideFlags: 0

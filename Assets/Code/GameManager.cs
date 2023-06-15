@@ -11,6 +11,7 @@ namespace TopDownShooter
     {
         [SerializeField] private int _currentLevel;
         [SerializeField] private WorldData[] _levels;
+        [SerializeReference] MusicController _musicController;
 
         private WorldBuilder _worldBuilder;
 
@@ -31,6 +32,7 @@ namespace TopDownShooter
             GameState.Current.Unbind();
             _worldBuilder.ReloadLevel(_levels[_currentLevel]);
             GameState.Current.Bind();
+            _musicController.ShouldBeFiltered = false;
         }
     }
 }

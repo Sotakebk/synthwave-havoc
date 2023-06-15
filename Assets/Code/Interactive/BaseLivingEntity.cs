@@ -8,6 +8,7 @@ namespace TopDownShooter.Interactive
         [SerializeField] protected float _maxStamina = 10;
         [SerializeField] protected float _healthRegeneratedPerSecond = 0.5f;
         [SerializeField] protected float _staminaRegeneratedPerSecond = 0.5f;
+        [SerializeField] protected AudioClip _hurtSound;
 
         protected float _health;
         protected float _stamina;
@@ -37,6 +38,9 @@ namespace TopDownShooter.Interactive
         public virtual void ModifyHealth(float delta)
         {
             _health = Mathf.Clamp(_health + delta, 0, _maxHealth);
+
+            if (delta < 0 && _hurtSound != null)
+                AudioSource.PlayClipAtPoint(_hurtSound, transform.position);
 
             if (_health == 0)
                 Die();

@@ -13,6 +13,7 @@ namespace TopDownShooter.Interactive {
         [SerializeReference] protected Transform _outputSource;
         [SerializeReference] protected Rigidbody _sourceRigidbody;
         [SerializeReference] protected GameObject _bulletPrefab;
+        [SerializeReference] protected AudioClip _shotSound;
 
         protected float _currentTimeout = 0;
 
@@ -58,6 +59,10 @@ namespace TopDownShooter.Interactive {
             var knockbackDirection = -bulletVelocity.normalized;
             _sourceRigidbody?.AddForce(_knockbackForce * knockbackDirection, ForceMode.Impulse);
             bullet.GetComponent<Rigidbody>().velocity = bulletVelocity;
+
+            if (_shotSound != null)
+                AudioSource.PlayClipAtPoint(_shotSound, _outputSource.transform.position);
+
             return true;
         }
     }

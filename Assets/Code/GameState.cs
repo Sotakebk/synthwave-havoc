@@ -15,6 +15,7 @@ namespace TopDownShooter
 
         [SerializeReference] GameManager _gameManager;
         [SerializeReference] UIController _uiController;
+        [SerializeReference] MusicController _musicController;
 
         private void Awake()
         {
@@ -42,12 +43,14 @@ namespace TopDownShooter
             if(enemies.Length == 0)
             {
                 _gameManager.OpenNextLevel();
+                _musicController.ShouldBeFiltered = false;
             }
         }
 
         public void NotifyPlayerDied()
         {
             _uiController.OnPlayerDeath();
+            _musicController.ShouldBeFiltered = true;
         }
     }
 }
