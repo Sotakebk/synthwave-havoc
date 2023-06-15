@@ -1,4 +1,6 @@
+#if UNITY_EDITOR
 using UnityEditor;
+#endif
 using UnityEngine;
 
 namespace TopDownShooter.World.Construction
@@ -32,6 +34,7 @@ namespace TopDownShooter.World.Construction
         }
     }
 
+#if UNITY_EDITOR
     [CustomPropertyDrawer(typeof(SingleLayer))]
     public class SingleLayerPropertyDrawer : PropertyDrawer
     {
@@ -47,4 +50,5 @@ namespace TopDownShooter.World.Construction
             EditorGUI.EndProperty();
         }
     }
+#endif
 }
