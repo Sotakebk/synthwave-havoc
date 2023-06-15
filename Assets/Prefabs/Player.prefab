@@ -139,6 +139,7 @@ MonoBehaviour:
   _velocitySmoothTime: 0.1
   _velocityRedirectionCoefficient: 0.3
   _maxVelocity: 10
+  _dashVelocity: 20
 --- !u!114 &6543799343385293471
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -151,8 +152,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d672db42d67b3b74599c521fbe27efe0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _camera: {fileID: 0}
   _weapon: {fileID: 4564240487710975697}
+  _livingEntity: {fileID: 7347181526165456236}
+  _staminaPerRedirect: 3
+  _staminaPerDashSecond: 6
 --- !u!114 &4564240487710975697
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -167,7 +170,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _secondsPerBullet: 0.1
   _overrideBulletProperties: 1
-  _damage: 2
+  _damage: 1.5
   _startVelocity: 10
   _minStartVelocity: 8
   _knockbackForce: 0.5
@@ -175,7 +178,6 @@ MonoBehaviour:
   _outputSource: {fileID: 5081072557806498971}
   _sourceRigidbody: {fileID: 6850327509088987491}
   _bulletPrefab: {fileID: 6789187643465070236, guid: 63e17975fbe1c4f4d8533e1f9b7b86ad, type: 3}
-  _camera: {fileID: 0}
   _cameraShakeForce: 0.5
 --- !u!114 &7347181526165456236
 MonoBehaviour:
@@ -191,8 +193,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _maxHealth: 10
   _maxStamina: 10
-  _healthRegeneratedPerSecond: 0.5
-  _staminaRegeneratedPerSecond: 2
+  _healthRegeneratedPerSecond: 0.2
+  _staminaRegeneratedPerSecond: 0.6
 --- !u!114 &3809513410246750202
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -23,7 +23,6 @@ namespace TopDownShooter
         {
             _currentLevel = -1;
             _levels = GetComponent<LevelContainer>().GetLevels();
-            OpenNextLevel();
         }
 
         public void OpenNextLevel()

@@ -331,7 +331,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _maxHealth: 10
   _maxStamina: 10
-  _healthRegeneratedPerSecond: 0
+  _healthRegeneratedPerSecond: 0.1
   _staminaRegeneratedPerSecond: 0.5
 --- !u!114 &8207910875087014078
 MonoBehaviour:

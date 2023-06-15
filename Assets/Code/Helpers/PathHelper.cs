@@ -19,7 +19,7 @@ namespace TopDownShooter.Helpers
         {
             var nearestPoint = position;
 
-            if (points.Length == 0)
+            if (points.Length < 2)
                 return nearestPoint;
 
             var nextPoint = points[1];

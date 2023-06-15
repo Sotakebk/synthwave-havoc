@@ -14,6 +14,7 @@ namespace TopDownShooter
         public CameraController PlayerCamera { get; private set; }
 
         [SerializeReference] GameManager _gameManager;
+        [SerializeReference] UIController _uiController;
 
         private void Awake()
         {
@@ -42,6 +43,11 @@ namespace TopDownShooter
             {
                 _gameManager.OpenNextLevel();
             }
+        }
+
+        public void NotifyPlayerDied()
+        {
+            _uiController.OnPlayerDeath();
         }
     }
 }

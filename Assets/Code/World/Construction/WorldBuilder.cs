@@ -43,13 +43,13 @@ namespace TopDownShooter.World.Construction
         {
             foreach (Transform child in transform)
             {
-                GameObject.Destroy(child.gameObject);
+                GameObject.DestroyImmediate(child.gameObject);
             }
         }
 
         private void CleanUpDynamicObjects()
         {
-            foreach (var impersistentObject in FindObjectsOfType<ImpersistentObject>())
+            foreach (var impersistentObject in FindObjectsOfType<ImpersistentObject>(includeInactive: true))
             {
                 impersistentObject.DestroyOnLevelChange();
             }
@@ -65,6 +65,7 @@ namespace TopDownShooter.World.Construction
         private void BuildStaticObjects(WorldData data)
         {
             GenerateChunks(data);
+            GetComponent<NavMeshSurface>().RemoveData();
             GetComponent<NavMeshSurface>().BuildNavMesh();
         }
 

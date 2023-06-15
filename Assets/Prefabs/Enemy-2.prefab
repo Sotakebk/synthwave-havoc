@@ -363,7 +363,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _secondsPerBullet: 2
   _overrideBulletProperties: 1
-  _damage: 1
+  _damage: 3
   _startVelocity: 6
   _minStartVelocity: 4
   _knockbackForce: 4
@@ -401,7 +401,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _maxHealth: 10
   _maxStamina: 10
-  _healthRegeneratedPerSecond: 0
+  _healthRegeneratedPerSecond: 0.1
   _staminaRegeneratedPerSecond: 0.5
 --- !u!114 &-8449243490257140753
 MonoBehaviour:

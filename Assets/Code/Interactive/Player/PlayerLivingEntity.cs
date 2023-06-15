@@ -6,7 +6,8 @@ namespace TopDownShooter.Interactive.Player
     {
         protected override void Die()
         {
-            Debug.Log("Player died!");
+            GameState.Current.NotifyPlayerDied();
+            gameObject.SetActive(false);
         }
     }
 }
