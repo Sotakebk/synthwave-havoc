@@ -199,9 +199,9 @@ namespace TopDownShooter.World.Construction
 
             // only one
             if (up && !down && !left && !right)
-                return TextureFromIdAndRotation(1, 0);
-            if (!up && down && !left && !right)
                 return TextureFromIdAndRotation(1, 2);
+            if (!up && down && !left && !right)
+                return TextureFromIdAndRotation(1, 0);
             if (!up && !down && left && !right)
                 return TextureFromIdAndRotation(1, 1);
             if (!up && !down && !left && right)
