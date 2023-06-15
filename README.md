@@ -16,12 +16,10 @@ The game will be a 3D shooter with view from above with a main goal to kill as m
 - at least one level,
 
 ### Should have:
-- music,
+- a few enemies,
 - score,
-- ammunition system,
-- a few weapons,
 - few levels.
 
 ### Nice to have:
-- weapon upgrade system,
+- music,
 - leap for a quick escape.

@@ -11,12 +11,12 @@ TagManager:
   - 
   - Water
   - UI
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
+  - Static
+  - Player
+  - Enemy
+  - EnemyGroupAvoidance
+  - PlayerBullet
+  - EnemyBullet
   - 
   - 
   - 
