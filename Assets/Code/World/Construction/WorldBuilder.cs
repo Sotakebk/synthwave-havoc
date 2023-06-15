@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using TopDownShooter.World.Data;
 using Unity.AI.Navigation;
@@ -43,7 +44,8 @@ namespace TopDownShooter.World.Construction
         {
             foreach (Transform child in transform)
             {
-                GameObject.DestroyImmediate(child.gameObject);
+                child.gameObject.SetActive(false);
+                Destroy(child.gameObject);
             }
         }
 
@@ -51,6 +53,7 @@ namespace TopDownShooter.World.Construction
         {
             foreach (var impersistentObject in FindObjectsOfType<ImpersistentObject>(includeInactive: true))
             {
+                impersistentObject.gameObject.SetActive(false);
                 impersistentObject.DestroyOnLevelChange();
             }
         }
